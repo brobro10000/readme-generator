@@ -3,7 +3,6 @@ const inquirer = require('inquirer');
 const fs = require('fs');
 const {generateMarkdown,renderLicenseLink} = require('./utils/generateMarkdown.js');
 // TODO: Create an array of questions for user input
-let i = 0;
 const questions = [
     {
         type: 'input',
@@ -44,7 +43,6 @@ const questions = [
             }
         }
     },
-    /*COME BACK TO THIS LATER FOR USAGE AND ADDING PICTURES DYNAMICALLY*/
     {
         type: 'input',
         name: 'usage',
@@ -77,15 +75,12 @@ const questions = [
             }
         }
     },
-    /*ADD MORE BADGES HERE WITH CONFIRM, TOP LANGUAGES ETC.*/
     {
         type: 'confirm',
         name: 'contributing',
         message: 'Would you like others to contribute?',
         choices: ["Yes", "No"]
     },
-    /*Add Check later if yes, put description, else continue*/
-    /*Add multiple test later if time permits*/
     {
         type: 'input',
         name: 'test',
@@ -131,7 +126,6 @@ const promptUser = () => {
     return inquirer.prompt(questions).then(projectData => {
         renderLicenseLink(projectData)
         return writeToFile("README",projectData)
-        //return projectData
     })
 }
 // TODO: Create a function to write README file
