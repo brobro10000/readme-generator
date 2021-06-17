@@ -1,5 +1,7 @@
 // TODO: Include packages needed for this application
-const inquirer = require('inquirer')
+const inquirer = require('inquirer');
+const fs = require('fs');
+const {generateMarkdown,renderLicenseLink} = require('./utils/generateMarkdown.js');
 // TODO: Create an array of questions for user input
 const questions = [
     {
@@ -55,20 +57,6 @@ const questions = [
             }
         }
     },
-    /*COME BACK TO ADD MULTIPLE CONTRIBUTERS AND THEIR RESPECTIVE GITHUB LINKS*/
-    {
-        type: 'input',
-        name: 'credits',
-        message: 'List the contributers for the project. (REQUIRED)',
-        validate: projectInstallation => {
-            if(projectInstallation) {
-                return true;
-            } else {
-                console.log('Please Enter Contributers')
-                return false
-            }
-        }
-    },
     {
         type: 'checkbox',
         name: 'license',
@@ -99,10 +87,10 @@ const questions = [
       },
       {
         type: 'input',
-        name: 'link',
-        message: 'Enter the GitHub link to your project. (Required)',
-        validate: projectLink => {
-          if (projectLink) {
+        name: 'github',
+        message: 'Enter your Github username. (Required)',
+        validate: projectUsername => {
+          if (projectUsername) {
             return true;
           } else {
             console.log('You need to enter a project GitHub link');
@@ -122,20 +110,61 @@ const questions = [
             return false;
           }
         }
-      }
+      },
+      /*COME BACK TO ADD MULTIPLE CONTRIBUTERS AND THEIR RESPECTIVE GITHUB LINKS*/
+    {
+        type: 'input',
+        name: 'credits',
+        message: 'How many contributers, besides yourself worked on the project? Please Enter a Number, (1,2,3...)',
+        default: "1",
+        validate: projectContributers => {
+            if(parseInt(projectContributers)) {
+                if(projectContributers == 1)
+                console.log(projectContributers +"projectContributers")
+                else
+                console.log(projectContributers + "projectContributers")
+                return true;
+            } else {
+                console.log('\nPlease Enter the number of contributers as a number (1,2,3...)')
+                return false
+            }
+        }
+    }
 ];
 
 const promptUser = () => {
     return inquirer.prompt(questions).then(projectData => {
-        console.log(projectData)
+        renderLicenseLink(projectData)
+        return projectData
+    }).then(data => {
+        console.log(data)
+    fs.writeFile("README.md",
+        generateMarkdown(data),
+        function(err)
+    {
+        if (err) {
+            return console.log(err);
+          }
+      
+          console.log("Success!");   
+    });
     });
 }
 // TODO: Create a function to write README file
 function writeToFile(fileName, data) {}
 
 // TODO: Create a function to initialize app
-function init() {}
+function init() {
+}
 
 // Function call to initialize app
 init();
 promptUser();
+
+// function addContributers(contributers){
+//     if(contributers == 1)
+//     console.log(contributers +"contributers")
+//     else
+//     console.log(contributers + "contributers")
+
+// }
