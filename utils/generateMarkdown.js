@@ -1,6 +1,30 @@
 // TODO: Create a function that returns a license badge based on which license is passed in
 // If there is no license, return an empty string
-function renderLicenseBadge(license) {}
+function renderLicenseBadge(license) {
+  let licenseBadgeOutput = ""
+  let licenseLink = []
+  for(var i = 0; i<license.license.length;i++)
+  {
+    if(i == license.license.length-1)
+    comma = ""
+    if(license.license[i] == "Apache 2.0")
+    {
+      licenseLink.push("https://choosealicense.com/licenses/apache-2.0/")
+      licenseBadgeOutput += `[![License](https://img.shields.io/badge/License-Apache%202.0-yellowgreen.svg)](${licenseLink[i]}) `  
+    } else if(license.license[i] == "GNU GPLv3")
+    {
+      licenseLink.push("https://choosealicense.com/licenses/gpl-3.0/")
+      licenseBadgeOutput += `[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](${licenseLink[i]}) `
+    } else if(license.license[i] == "MIT") {
+      licenseLink.push("https://choosealicense.com/licenses/mit/")
+      licenseBadgeOutput += `[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](${licenseLink[i]}) `
+    } else if(license.license[i] == "ISC") {
+      licenseLink.push("https://choosealicense.com/licenses/isc/")
+      licenseBadgeOutput += `[![License: ISC](https://img.shields.io/badge/License-ISC-blue.svg)](${licenseLink[i]})`
+    }
+  }
+  return licenseBadgeOutput
+}
 
 // TODO: Create a function that returns the license link
 // If there is no license, return an empty string
@@ -40,9 +64,7 @@ function renderLicenseLink(license) {
 // If there is no license, return an empty string
 function renderLicenseSection(license) {}
 function contributersOutput(contributers){
-  let output = `
-  ## **Contributers**
-  ##  The Contributers Covenant Guidelines
+  let output = ` ##  [The Contributers Covenant Guidelines](https://www.contributor-covenant.org/)
   ### **Contributor Covenant Code of Conduct**
   
   ### **Our Pledge**
@@ -174,17 +196,18 @@ function contributersOutput(contributers){
   [v2.0]: https://www.contributor-covenant.org/version/2/0/code_of_conduct.html
   [Mozilla CoC]: https://github.com/mozilla/diversity
   [FAQ]: https://www.contributor-covenant.org/faq
-  [translations]: https://www.contributor-covenant.org/translations`
+  [translations]: https://www.contributor-covenant.org/translations `
   if(contributers)
     return output
   else 
     return output = 
-    `## **Contributers**
-    Contributing to the Project is Restricted`
+    ` Contributing to the Project is Restricted `
 }
 // TODO: Create a function to generate markdown for README
 function generateMarkdown(data) {
-  return `# ${data.title} 
+  return `
+  ${renderLicenseBadge(data)}
+  # ${data.title} 
   ## **Description**
   ${data.description}
 
@@ -221,6 +244,7 @@ function generateMarkdown(data) {
 
   ---
 
+  ## **Contributers**
   ${contributersOutput(data.contributing)}
 
   ---
@@ -234,7 +258,7 @@ function generateMarkdown(data) {
 
   ### **Github**
   [Repository](https://github.com/${data.github})
-  
+
   [Personal Page](https://${data.github}.github.io)
 
   If you have any questions, you can reach me at <${data.email}>

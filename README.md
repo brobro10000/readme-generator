@@ -1,4 +1,6 @@
-# test 
+
+  [![License: ISC](https://img.shields.io/badge/License-ISC-blue.svg)](https://choosealicense.com/licenses/isc/)
+  # test 
   ## **Description**
   test
 
@@ -31,17 +33,14 @@
   ---
 
   ## **License**
-  4 licenses are used:
- [Apache 2.0](https://choosealicense.com/licenses/apache-2.0/), 
- [GNU_GPLV3](https://choosealicense.com/licenses/gpl-3.0/), 
- [MIT](https://choosealicense.com/licenses/mit/), 
+  1 license used:
  [ISC](https://choosealicense.com/licenses/isc/)
  
 
   ---
 
   ## **Contributers**
-    Contributing to the Project is Restricted
+   Contributing to the Project is Restricted 
 
   ---
 
@@ -54,7 +53,7 @@
 
   ### **Github**
   [Repository](https://github.com/test)
-  
+
   [Personal Page](https://test.github.io)
 
   If you have any questions, you can reach me at <test>
