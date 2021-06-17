@@ -17,25 +17,20 @@ function renderLicenseLink(license) {
   {
     if(i == license.license.length-1)
     comma = ""
-    console.log(license.license.length,license.license[i],license)
     if(license.license[i] == "Apache 2.0")
     {
       licenseLink.push("https://choosealicense.com/licenses/apache-2.0/")
       output += `[Apache 2.0](${licenseLink[i]})${comma}\n `
-      console.log(output)
     } else if(license.license[i] == "GNU GPLv3")
     {
       licenseLink.push("https://choosealicense.com/licenses/gpl-3.0/")
       output += `[GNU_GPLV3](${licenseLink[i]})${comma}\n `
-      console.log(output)
     } else if(license.license[i] == "MIT") {
       licenseLink.push("https://choosealicense.com/licenses/mit/")
       output += `[MIT](${licenseLink[i]})${comma}\n `
-      console.log(output)
     } else if(license.license[i] == "ISC") {
       licenseLink.push("https://choosealicense.com/licenses/isc/")
       output += `[ISC](${licenseLink[i]})${comma}\n `
-      console.log(output)
     }
   }
   return output
@@ -46,7 +41,8 @@ function renderLicenseLink(license) {
 function renderLicenseSection(license) {}
 function contributersOutput(contributers){
   let output = `
-  ## **Contributers - The Contributers Covenant Guidelines**
+  ## **Contributers**
+  ##  The Contributers Covenant Guidelines
   ### **Contributor Covenant Code of Conduct**
   
   ### **Our Pledge**
@@ -188,26 +184,59 @@ function contributersOutput(contributers){
 }
 // TODO: Create a function to generate markdown for README
 function generateMarkdown(data) {
-  console.log(data.github)
   return `# ${data.title} 
   ## **Description**
   ${data.description}
+
+  ---
+
   ## **Table of Contents**
-  *
+  * [Installation](#installation)
+  * [Usage](#usage)
+  * [Credits](#credits)
+  * [License(s)](#license)
+  * [Contributers](#contributers)
+  * [Tests](#tests)
+  * [Questions](#questions)
+   
+  ---
+
   ## **Installation**
   ${data.installation}
+
+  ---
+
   ## **Usage**
   ${data.usage}
+
+  ---
+
   ## **Credits**
   ${data.credits}
-  ## **License(s)**
+
+  ---
+
+  ## **License**
   ${renderLicenseLink(data)}
+
+  ---
+
   ${contributersOutput(data.contributing)}
+
+  ---
+
   ## **Tests**
   ${data.test}
-  ## **Github Link**
-  [GithubLinkFor${data.github}](https://${data.github}.github.io)
+
+  ---
+
   ## **Questions?**
+
+  ### **Github**
+  [Repository](https://github.com/${data.github})
+  
+  [Personal Page](https://${data.github}.github.io)
+
   If you have any questions, you can reach me at <${data.email}>
 `;
 }

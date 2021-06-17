@@ -3,6 +3,7 @@ const inquirer = require('inquirer');
 const fs = require('fs');
 const {generateMarkdown,renderLicenseLink} = require('./utils/generateMarkdown.js');
 // TODO: Create an array of questions for user input
+let i = 0;
 const questions = [
     {
         type: 'input',
@@ -63,6 +64,19 @@ const questions = [
         message: 'Choose from a list of licenses. Badges will be added to the top of the README (REQUIRED)',
         choices: ['Apache 2.0', "GNU GPLv3", "MIT","ISC"]
     },
+    {
+        type: 'input',
+        name: 'credits',
+        message: 'Who contributed to the project? (REQUIRED)',
+        validate: projectContributers => {
+            if(projectContributers) {
+                return true;
+            } else {
+                console.log('\nYou must enter the names of the contributers')
+                return false
+            }
+        }
+    },
     /*ADD MORE BADGES HERE WITH CONFIRM, TOP LANGUAGES ETC.*/
     {
         type: 'confirm',
@@ -111,60 +125,30 @@ const questions = [
           }
         }
       },
-      /*COME BACK TO ADD MULTIPLE CONTRIBUTERS AND THEIR RESPECTIVE GITHUB LINKS*/
-    {
-        type: 'input',
-        name: 'credits',
-        message: 'How many contributers, besides yourself worked on the project? Please Enter a Number, (1,2,3...)',
-        default: "1",
-        validate: projectContributers => {
-            if(parseInt(projectContributers)) {
-                if(projectContributers == 1)
-                console.log(projectContributers +"projectContributers")
-                else
-                console.log(projectContributers + "projectContributers")
-                return true;
-            } else {
-                console.log('\nPlease Enter the number of contributers as a number (1,2,3...)')
-                return false
-            }
-        }
-    }
+  
 ];
-
 const promptUser = () => {
     return inquirer.prompt(questions).then(projectData => {
         renderLicenseLink(projectData)
-        return projectData
-    }).then(data => {
-        console.log(data)
-    fs.writeFile("README.md",
-        generateMarkdown(data),
-        function(err)
+        return writeToFile("README",projectData)
+        //return projectData
+    })
+}
+// TODO: Create a function to write README file
+function writeToFile(fileName, data) {
+    fs.writeFile(fileName + ".md",generateMarkdown(data),function(err)
     {
         if (err) {
             return console.log(err);
           }
-      
           console.log("Success!");   
     });
-    });
 }
-// TODO: Create a function to write README file
-function writeToFile(fileName, data) {}
 
 // TODO: Create a function to initialize app
 function init() {
+    promptUser();
 }
 
 // Function call to initialize app
 init();
-promptUser();
-
-// function addContributers(contributers){
-//     if(contributers == 1)
-//     console.log(contributers +"contributers")
-//     else
-//     console.log(contributers + "contributers")
-
-// }
