@@ -1,70 +1,49 @@
-// TODO: Create a function that returns a license badge based on which license is passed in
-// If there is no license, return an empty string
-function renderLicenseBadge(license) {
-  let licenseBadgeOutput = ""
-  let licenseLink = []
-  for(var i = 0; i<license.license.length;i++)
-  {
-    if(i == license.license.length-1)
-    comma = ""
-    if(license.license[i] == "Apache 2.0")
-    {
-      licenseLink.push("https://choosealicense.com/licenses/apache-2.0/")
-      licenseBadgeOutput += `[![License](https://img.shields.io/badge/License-Apache%202.0-yellowgreen.svg)](${licenseLink[i]}) `  
-    } else if(license.license[i] == "GNU GPLv3")
-    {
-      licenseLink.push("https://choosealicense.com/licenses/gpl-3.0/")
-      licenseBadgeOutput += `[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](${licenseLink[i]}) `
-    } else if(license.license[i] == "MIT") {
-      licenseLink.push("https://choosealicense.com/licenses/mit/")
-      licenseBadgeOutput += `[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](${licenseLink[i]}) `
-    } else if(license.license[i] == "ISC") {
-      licenseLink.push("https://choosealicense.com/licenses/isc/")
-      licenseBadgeOutput += `[![License: ISC](https://img.shields.io/badge/License-ISC-blue.svg)](${licenseLink[i]})`
-    }
-  }
-  return licenseBadgeOutput
-}
 
-// TODO: Create a function that returns the license link
-// If there is no license, return an empty string
-function renderLicenseLink(license) {
-  let licenseLink = []
-  let output = ""
-  let comma = ", "
-  if(license.license.length == 1){
-  output += `${license.license.length} license used:\n `
-  }
-  else 
-  output += `${license.license.length} licenses are used:\n `
-  for(var i = 0; i<license.license.length;i++)
-  {
-    if(i == license.license.length-1)
-    comma = ""
-    if(license.license[i] == "Apache 2.0")
-    {
-      licenseLink.push("https://choosealicense.com/licenses/apache-2.0/")
-      output += `[Apache 2.0](${licenseLink[i]})${comma}\n `
-    } else if(license.license[i] == "GNU GPLv3")
-    {
-      licenseLink.push("https://choosealicense.com/licenses/gpl-3.0/")
-      output += `[GNU_GPLV3](${licenseLink[i]})${comma}\n `
-    } else if(license.license[i] == "MIT") {
-      licenseLink.push("https://choosealicense.com/licenses/mit/")
-      output += `[MIT](${licenseLink[i]})${comma}\n `
-    } else if(license.license[i] == "ISC") {
-      licenseLink.push("https://choosealicense.com/licenses/isc/")
-      output += `[ISC](${licenseLink[i]})${comma}\n `
-    }
-  }
-  return output
-}
+  [![License](https://img.shields.io/badge/License-Apache%202.0-yellowgreen.svg)](https://choosealicense.com/licenses/apache-2.0/) [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://choosealicense.com/licenses/gpl-3.0/) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://choosealicense.com/licenses/mit/) [![License: ISC](https://img.shields.io/badge/License-ISC-blue.svg)](https://choosealicense.com/licenses/isc/)
+  # Readme Generator 
+  ## **Description**
+  This is a program that can quickly deliver the user a simple skelton of a readme for them to edit and add onto later.
 
-// TODO: Create a function that returns the license section of README
-// If there is no license, return an empty string
-function renderLicenseSection(license) {}
-function contributersOutput(contributers){
-  let output = ` ##  [The Contributers Covenant Guidelines](https://www.contributor-covenant.org/)
+  ---
+
+  ## **Table of Contents**
+  * [Installation](#installation)
+  * [Usage](#usage)
+  * [Credits](#credits)
+  * [License(s)](#license)
+  * [Contributers](#contributers)
+  * [Tests](#tests)
+  * [Questions](#questions)
+   
+  ---
+
+  ## **Installation**
+  Navigate to the root folder in the terminal and run 'node index'
+
+  ---
+
+  ## **Usage**
+  It is used when it requires a user to quickly generate a skeleton of a professional readme to fill in later on.
+
+  ---
+
+  ## **Credits**
+  Hamzah Ullah
+
+  ---
+
+  ## **License**
+  4 licenses are used:
+ [Apache 2.0](https://choosealicense.com/licenses/apache-2.0/), 
+ [GNU_GPLV3](https://choosealicense.com/licenses/gpl-3.0/), 
+ [MIT](https://choosealicense.com/licenses/mit/), 
+ [ISC](https://choosealicense.com/licenses/isc/)
+ 
+
+  ---
+
+  ## **Contributers**
+   ##  [The Contributers Covenant Guidelines](https://www.contributor-covenant.org/)
   ### **Contributor Covenant Code of Conduct**
   
   ### **Our Pledge**
@@ -196,73 +175,20 @@ function contributersOutput(contributers){
   [v2.0]: https://www.contributor-covenant.org/version/2/0/code_of_conduct.html
   [Mozilla CoC]: https://github.com/mozilla/diversity
   [FAQ]: https://www.contributor-covenant.org/faq
-  [translations]: https://www.contributor-covenant.org/translations `
-  if(contributers)
-    return output
-  else 
-    return output = 
-    ` Contributing to the Project is Restricted `
-}
-// TODO: Create a function to generate markdown for README
-function generateMarkdown(data) {
-  return `
-  ${renderLicenseBadge(data)}
-  # ${data.title} 
-  ## **Description**
-  ${data.description}
-
-  ---
-
-  ## **Table of Contents**
-  * [Installation](#installation)
-  * [Usage](#usage)
-  * [Credits](#credits)
-  * [License(s)](#license)
-  * [Contributers](#contributers)
-  * [Tests](#tests)
-  * [Questions](#questions)
-   
-  ---
-
-  ## **Installation**
-  ${data.installation}
-
-  ---
-
-  ## **Usage**
-  ${data.usage}
-
-  ---
-
-  ## **Credits**
-  ${data.credits}
-
-  ---
-
-  ## **License**
-  ${renderLicenseLink(data)}
-
-  ---
-
-  ## **Contributers**
-  ${contributersOutput(data.contributing)}
+  [translations]: https://www.contributor-covenant.org/translations 
 
   ---
 
   ## **Tests**
-  ${data.test}
+  To test this project, simply try and generate your own readme with this program!
 
   ---
 
   ## **Questions?**
 
   ### **Github**
-  [Repository](https://github.com/${data.github})
+  [Repository](https://github.com/brobro10000)
 
-  [Personal Page](https://${data.github}.github.io)
+  [Personal Page](https://brobro10000.github.io)
 
-  If you have any questions, you can reach me at <${data.email}>
-`;
-}
-
-module.exports = {generateMarkdown, renderLicenseLink};
+  If you have any questions, you can reach me at <hamzahullah@gmail.com>

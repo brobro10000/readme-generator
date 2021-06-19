@@ -16,7 +16,7 @@ const questions = [
                 return false
             }
         }
-    },
+    }, 
     {
         type: 'input',
         name: 'description',
@@ -125,23 +125,30 @@ const questions = [
 const promptUser = () => {
     return inquirer.prompt(questions).then(projectData => {
         renderLicenseLink(projectData)
-        return writeToFile("README",projectData)
+        return writeToFile("sampleREADME",projectData)
     })
 }
+var i = 1
 // TODO: Create a function to write README file
 function writeToFile(fileName, data) {
-    fs.writeFile(fileName + ".md",generateMarkdown(data),function(err)
-    {
-        if (err) {
-            return console.log(err);
-          }
-          console.log("Success!");   
-    });
+    
+    if(fs.existsSync(`${fileName}(${i++}).md`)){
+        writeToFile(fileName,data)
+    } else {
+        fs.writeFile(`${fileName}(${--i}).md`,generateMarkdown(data),function(err)
+        {
+            if (err) {
+                return console.log(err);
+              }
+              console.log(`${fileName}(${i}) successfully generated.`);   
+        }); 
+    }
 }
 
 // TODO: Create a function to initialize app
 function init() {
     promptUser();
+
 }
 
 // Function call to initialize app
