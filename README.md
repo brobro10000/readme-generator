@@ -59,6 +59,10 @@ This program allows you to create a template of a professional markdown for gith
 # Why it Matters?
 Using node, and the node package manager, we can implement powerful tools using javascript. The readme generator is simply the tip of the iceberg. The readme generator is an example of how a user can design the code to suit their perosnal needs, and streamline their workflow. Developing for a masses, developers can provide tools and services to businesses and individuals that streamlines their workflow, allowing for more efficient use of time, such as the readme generator does for developers in creating markdowns.
 
-Watch my Readme Generator in action by [by clicking here](https://brobro10000.github.io/weather-dashboard) or follow the direct link at [https://brobro10000.github.io/weather-dashboard](https://brobro10000.github.io/weather-dashboard). 
-
+Watch my Readme Generator in action!
+<!-- blank line -->
+<figure class="video_container">
+  <iframe src="https://www.youtube.com/embed/6CgoRPkX0Xc" frameborder="0" allowfullscreen="true"> </iframe>
+</figure>
+<!-- blank line -->
 ## <center>We Hope to see you there!</center> ##
