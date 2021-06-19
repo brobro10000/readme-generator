@@ -1,5 +1,4 @@
-// TODO: Create a function that returns a license badge based on which license is passed in
-// If there is no license, return an empty string
+//Creates the license badges from array of chosen licenses
 function renderLicenseBadge(license) {
   let licenseBadgeOutput = ""
   let licenseLink = []
@@ -25,9 +24,7 @@ function renderLicenseBadge(license) {
   }
   return licenseBadgeOutput
 }
-
-// TODO: Create a function that returns the license link
-// If there is no license, return an empty string
+//Creates link for the licenses
 function renderLicenseLink(license) {
   let licenseLink = []
   let output = ""
@@ -59,10 +56,7 @@ function renderLicenseLink(license) {
   }
   return output
 }
-
-// TODO: Create a function that returns the license section of README
-// If there is no license, return an empty string
-function renderLicenseSection(license) {}
+//Based on value of contributers, will either return contributer-covenenant or no contributions allowed
 function contributersOutput(contributers){
   let output = ` ##  [The Contributers Covenant Guidelines](https://www.contributor-covenant.org/)
   ### **Contributor Covenant Code of Conduct**
@@ -203,7 +197,7 @@ function contributersOutput(contributers){
     return output = 
     ` Contributing to the Project is Restricted `
 }
-// TODO: Create a function to generate markdown for README
+//Creates markdown page
 function generateMarkdown(data) {
   return `
   ${renderLicenseBadge(data)}

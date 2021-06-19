@@ -1,9 +1,9 @@
-// TODO: Include packages needed for this application
+//CONSTANTS AND IMPORTS
 const inquirer = require('inquirer');
 const fs = require('fs');
 const { generateMarkdown, renderLicenseLink } = require('./utils/generateMarkdown.js');
 const readmeName = "sampleREADME"
-// TODO: Create an array of questions for user input
+//QUESTION OBJECT CONTAINING ALL QUESTIONS
 const questions = [
     {
         type: 'input',
@@ -123,14 +123,16 @@ const questions = [
     },
 
 ];
+//FUNCTION THAT USES INQUIRER TO PROMPT USER THROUGH TERMINAL, RETURNS WRITE TO FILE
 const promptUser = () => {
     return inquirer.prompt(questions).then(projectData => {
         renderLicenseLink(projectData)
         return writeToFile(readmeName, projectData)
     })
 }
+//GLOBAL i FOR FILE GENERATION
 var i = 1
-// TODO: Create a function to write README file
+//WRITE FILE, CHECKS IF FILE EXIST, IF IT DOES CALLS FUNCTION AGAIN TO WRITE
 function writeToFile(fileName, data) {
     fs.access(`${fileName}(${i++}).md`, (err) => {
         if (err) {
@@ -145,12 +147,7 @@ function writeToFile(fileName, data) {
         }
     })
 }
+//STARTS PROGRAM
+promptUser();
 
-// TODO: Create a function to initialize app
-function init() {
-    promptUser();
 
-}
-
-// Function call to initialize app
-init();
