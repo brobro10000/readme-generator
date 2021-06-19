@@ -2,6 +2,7 @@
 const inquirer = require('inquirer');
 const fs = require('fs');
 const {generateMarkdown,renderLicenseLink} = require('./utils/generateMarkdown.js');
+const readmeName = "sampleREADME"
 // TODO: Create an array of questions for user input
 const questions = [
     {
@@ -125,7 +126,7 @@ const questions = [
 const promptUser = () => {
     return inquirer.prompt(questions).then(projectData => {
         renderLicenseLink(projectData)
-        return writeToFile("sampleREADME",projectData)
+        return writeToFile(readmeName,projectData)
     })
 }
 var i = 1
