@@ -131,18 +131,20 @@ const promptUser = () => {
 var i = 1
 // TODO: Create a function to write README file
 function writeToFile(fileName, data) {
-    
-    if(fs.existsSync(`${fileName}(${i++}).md`)){
-        writeToFile(fileName,data)
-    } else {
-        fs.writeFile(`${fileName}(${--i}).md`,generateMarkdown(data),function(err)
+
+    fs.access(`${fileName}(${i++}).md`, (err)=>{
+        if(err){
+            fs.writeFile(`${fileName}(${--i}).md`,generateMarkdown(data),function(err)
         {
             if (err) {
                 return console.log(err);
               }
               console.log(`${fileName}(${i}) successfully generated.`);   
-        }); 
-    }
+        });
+        } else {
+            return writeToFile(fileName,data)
+        }
+    })
 }
 
 // TODO: Create a function to initialize app

@@ -3,7 +3,7 @@
 ![Image of Readme Generator
 ](src/images/readmeGeneratorSS.PNG
 "Weather Dashboard Homepage")
-]
+
 
 ## **The Readme Generator**
 This program allows you to create a template of a professional markdown for github. Following the guide for a [professional readme](https://github.com/coding-boot-camp/potential-enigma/blob/main/readme-guide.md), we can create all the required features of a professional readme, and fill in the data more extensively once it has been generated. 
