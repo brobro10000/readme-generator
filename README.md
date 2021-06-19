@@ -11,7 +11,7 @@ This program allows you to create a template of a professional markdown for gith
 
 - After the user enters 'node index', they are answed a series of questions to fill in the readme with the preliminary data. The node package used to generate the structure is the [inquirer](https://www.npmjs.com/package/inquirer) package.
 
-![NodePrompts](src/images/promptsSS.PNG)
+![NodePrompts](src/images/prompts1SS.PNG)
 
 
 - Once the user has successfully entered the required prompts, a readme is generated for the user. It is currently named 'sampleReadme'.
