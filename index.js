@@ -1,7 +1,7 @@
 // TODO: Include packages needed for this application
 const inquirer = require('inquirer');
 const fs = require('fs');
-const {generateMarkdown,renderLicenseLink} = require('./utils/generateMarkdown.js');
+const { generateMarkdown, renderLicenseLink } = require('./utils/generateMarkdown.js');
 const readmeName = "sampleREADME"
 // TODO: Create an array of questions for user input
 const questions = [
@@ -10,20 +10,20 @@ const questions = [
         name: 'title',
         message: 'What is the Title of the Project. (REQUIRED)',
         validate: projectTitle => {
-            if(projectTitle) {
+            if (projectTitle) {
                 return true;
             } else {
                 console.log('Please Enter a Project Title')
                 return false
             }
         }
-    }, 
+    },
     {
         type: 'input',
         name: 'description',
         message: 'Enter a Short Description about your Project. (REQUIRED)',
         validate: projectDescription => {
-            if(projectDescription) {
+            if (projectDescription) {
                 return true;
             } else {
                 console.log('Please Enter a Project Description')
@@ -36,7 +36,7 @@ const questions = [
         name: 'installation',
         message: 'How do you install this project? (REQUIRED)',
         validate: projectInstallation => {
-            if(projectInstallation) {
+            if (projectInstallation) {
                 return true;
             } else {
                 console.log('Please Enter Project Installation')
@@ -48,8 +48,8 @@ const questions = [
         type: 'input',
         name: 'usage',
         message: 'How is this product used? (REQUIRED)',
-        validate: projectUsage=> {
-            if(projectUsage) {
+        validate: projectUsage => {
+            if (projectUsage) {
                 return true;
             } else {
                 console.log('Please Enter Usage Information')
@@ -61,14 +61,14 @@ const questions = [
         type: 'checkbox',
         name: 'license',
         message: 'Choose from a list of licenses. Badges will be added to the top of the README (REQUIRED)',
-        choices: ['Apache 2.0', "GNU GPLv3", "MIT","ISC"]
+        choices: ['Apache 2.0', "GNU GPLv3", "MIT", "ISC"]
     },
     {
         type: 'input',
         name: 'credits',
         message: 'Who contributed to the project? (REQUIRED)',
         validate: projectContributers => {
-            if(projectContributers) {
+            if (projectContributers) {
                 return true;
             } else {
                 console.log('\nYou must enter the names of the contributers')
@@ -87,63 +87,61 @@ const questions = [
         name: 'test',
         message: 'Enter tests for your projects. (Required)',
         validate: projectTest => {
-          if (projectTest) {
-            return true;
-          } else {
-            console.log('Enter some tests for the project');
-            return false;
-          }
+            if (projectTest) {
+                return true;
+            } else {
+                console.log('Enter some tests for the project');
+                return false;
+            }
         }
-      },
-      {
+    },
+    {
         type: 'input',
         name: 'github',
         message: 'Enter your Github username. (Required)',
         validate: projectUsername => {
-          if (projectUsername) {
-            return true;
-          } else {
-            console.log('You need to enter a project GitHub link');
-            return false;
-          }
+            if (projectUsername) {
+                return true;
+            } else {
+                console.log('You need to enter a project GitHub link');
+                return false;
+            }
         }
-      },
-      {
+    },
+    {
         type: 'input',
         name: 'email',
         message: 'Please enter an email address for people to reach you(Required)',
         validate: userEmail => {
-          if (userEmail) {
-            return true;
-          } else {
-            console.log('You need to enter an email address');
-            return false;
-          }
+            if (userEmail) {
+                return true;
+            } else {
+                console.log('You need to enter an email address');
+                return false;
+            }
         }
-      },
-  
+    },
+
 ];
 const promptUser = () => {
     return inquirer.prompt(questions).then(projectData => {
         renderLicenseLink(projectData)
-        return writeToFile(readmeName,projectData)
+        return writeToFile(readmeName, projectData)
     })
 }
 var i = 1
 // TODO: Create a function to write README file
 function writeToFile(fileName, data) {
-
-    fs.access(`${fileName}(${i++}).md`, (err)=>{
-        if(err){
-            fs.writeFile(`${fileName}(${--i}).md`,generateMarkdown(data),function(err)
-        {
-            if (err) {
-                return console.log(err);
-              }
-              console.log(`${fileName}(${i}) successfully generated.`);   
-        });
+    fs.access(`${fileName}(${i++}).md`, (err) => {
+        if (err) {
+            fs.writeFile(`${fileName}(${--i}).md`, generateMarkdown(data), function (err) {
+                if (err) {
+                    return console.log(err);
+                }
+                console.log(`${fileName}(${i}) successfully generated.`);
+            });
         } else {
-            return writeToFile(fileName,data)
+            return writeToFile(fileName, data)
         }
     })
 }
