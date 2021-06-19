@@ -59,8 +59,10 @@ This program allows you to create a template of a professional markdown for gith
 # Why it Matters?
 Using node, and the node package manager, we can implement powerful tools using javascript. The readme generator is simply the tip of the iceberg. The readme generator is an example of how a user can design the code to suit their perosnal needs, and streamline their workflow. Developing for a masses, developers can provide tools and services to businesses and individuals that streamlines their workflow, allowing for more efficient use of time, such as the readme generator does for developers in creating markdowns.
 
-Watch my Readme Generator in action!
+Watch my Readme Generator in action! The image below links to a Youtube video of the demonstration of the readme generator.
+
 [![Image of My Youtube Video of Module 9
 ](src/images/videoSS.PNG)
 ](https://www.youtube.com/watch?v=6CgoRPkX0Xc)
+
 ## <center>We Hope to see you there!</center> ##
