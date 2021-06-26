@@ -2,7 +2,7 @@
 
 ![Image of Readme Generator
 ](src/images/readmeGeneratorSS.PNG
-"Weather Dashboard Homepage")
+"test")
 
 
 ## **The Readme Generator**
